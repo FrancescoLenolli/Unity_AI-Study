@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Driver : MonoBehaviour
+public class Driver : AgentComponent
 {
     [SerializeField] private Transform target = null;
     [SerializeField] private float movementSpeed = 1f;
@@ -9,8 +9,10 @@ public class Driver : MonoBehaviour
     [SerializeField] private bool canMove = true;
     [SerializeField] private bool autoPilot = false;
 
-    private void Update()
+    public override void Tick()
     {
+        Face(target);
+
         if (!CanMove())
             return;
 
@@ -20,7 +22,6 @@ public class Driver : MonoBehaviour
         Vector3 direction = autoPilot ?
             GetDirection() : GetInput();
 
-        Face(target);
         Move(direction);
     }
 
@@ -53,10 +54,17 @@ public class Driver : MonoBehaviour
 
     private bool CanMove()
     {
-        if(!canMove || !autoPilot || Vector3.Distance
-            (transform.position, target.position) < threshold)
+        if (!canMove)
         {
             return false;
+        }
+        if(autoPilot)
+        {
+            if(Vector3.Distance
+            (transform.position, target.position) < threshold)
+            {
+                return false;
+            }
         }
 
         return true;

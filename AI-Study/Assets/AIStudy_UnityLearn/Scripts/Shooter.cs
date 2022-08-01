@@ -2,22 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : MonoBehaviour
+public class Shooter : AgentComponent
 {
     [SerializeField] private Transform weapon = null;
     [SerializeField] private Transform muzzle = null;
     [SerializeField] private Projectile projectilePrefab = null;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private bool canShoot = true;
+    [SerializeField] private bool autopilot = false;
+    public Transform target = null;
 
-    private void Update()
+    public override void Tick()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && canShoot)
+
+        Targeter targeter = (Targeter)owner.GetAgentComponent(typeof(Targeter));
+        target = targeter.Target;
+
+        if(canShoot)
         {
-            Shoot();
+            if(!autopilot)
+            {
+                if(Input.GetKeyDown(KeyCode.Space))
+                {
+                    Shoot();
+                }
+            }
+            else
+            {
+
+            }
         }
 
-        Rotate(Input.GetAxis("Vertical"));
+        if(!autopilot)
+        {
+            Rotate(Input.GetAxis("Vertical"));
+        }
     }
 
     private void Shoot()
@@ -30,5 +49,10 @@ public class Shooter : MonoBehaviour
     private void Rotate(float input)
     {
         weapon.Rotate(input * rotationSpeed * Time.deltaTime, 0, 0);
+    }
+
+    private float? CalculateAngle(bool low)
+    {
+        return null;
     }
 }
