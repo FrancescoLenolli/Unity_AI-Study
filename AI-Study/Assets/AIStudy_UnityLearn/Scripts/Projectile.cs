@@ -1,30 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float totalLifeSpan = 1f;
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private new Rigidbody rigidbody = null;
+
     private float lifeSpan;
+    private Transform owner;
+
+    public float Speed { get => speed; }
 
     private void Update()
     {
-        lifeSpan -= Time.deltaTime;
+        transform.forward = rigidbody.velocity;
 
-        if(lifeSpan <= 0f)
+        lifeSpan -= Time.deltaTime;
+        if (lifeSpan <= 0f)
         {
-            Destroy(gameObject);
+            DoDestroy();
         }
     }
 
-    private void LateUpdate()
+    private void OnCollisionEnter(Collision collision)
     {
+        if (collision.collider.gameObject.transform.root != owner)
+        {
+            DoDestroy();
+        }
     }
 
-    public void Init(Transform origin)
+    public void Init(Transform owner, Transform origin)
     {
+        this.owner = owner;
         transform.position = origin.position;
         transform.rotation = origin.rotation;
         lifeSpan = totalLifeSpan;
+        rigidbody.velocity = speed * origin.forward;
+    }
+
+    private void DoDestroy()
+    {
+        Destroy(gameObject);
     }
 }

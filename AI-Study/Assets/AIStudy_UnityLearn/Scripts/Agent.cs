@@ -6,28 +6,21 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    [SerializeField] private Transform target;
+
     private List<AgentComponent> components = new List<AgentComponent>();
+
+    public Transform Target { get => target; set { target = value; OnTargetChanged?.Invoke(target); } }
+    public Action<Transform> OnTargetChanged { get; set; }
 
     private void Awake()
     {
         components = GetComponents<AgentComponent>().ToList();
-        components.ForEach(component => component.owner = this);
+        components.ForEach(component => component.Init(this));
     }
 
     private void Update()
     {
         components.ForEach(component => component.Tick());
-    }
-
-    public AgentComponent GetAgentComponent(Type type)
-    {
-        AgentComponent component = components.Where
-            (component => component.GetType() == type).First();
-
-        if(component == null)
-        {
-            Debug.Log($"{name} has no {type} component!");
-        }
-        return component;
     }
 }
