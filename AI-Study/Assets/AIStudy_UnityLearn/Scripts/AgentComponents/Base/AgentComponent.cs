@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class AgentComponent : MonoBehaviour
 {
-    [HideInInspector] public Agent owner;
+    [SerializeField] private new bool enabled = true;
 
-    public virtual void Init(Agent owner) { this.owner = owner; }
-    public virtual void Tick() { }
+    public Agent Owner { get; private set; }
+    public bool Enabled { get => enabled; }
+
+    public virtual void Init(Agent owner) { Owner = owner; }
+    public virtual void Tick() { if (!Enabled) return; }
+    public bool IsEnabled() { return Enabled; }
 }

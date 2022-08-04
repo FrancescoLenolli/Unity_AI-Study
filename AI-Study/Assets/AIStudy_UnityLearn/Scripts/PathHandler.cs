@@ -32,6 +32,8 @@ public class PathHandler : MonoBehaviour
             if (link.direction == Link.Direction.Bidirectional)
                 pathfind.AddEdge(link.node2, link.node1);
         });
+
+        SetPath();
     }
 
     private void Update()
@@ -42,7 +44,10 @@ public class PathHandler : MonoBehaviour
     [ContextMenu("Set Path")]
     public void SetPath()
     {
-        if (pathfind.AStar(pathfind.GetClosestNode(pathFollower.owner.gameObject), targetPosition))
+        if (!pathFollower)
+            return;
+
+        if (pathfind.AStar(pathfind.GetClosestNode(pathFollower.Owner.gameObject), targetPosition))
         {
             Transform[] nodePositions = pathfind.GetPath().Select(node => node.gameobject.transform).ToArray();
             pathFollower.SetPath(nodePositions);

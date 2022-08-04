@@ -27,6 +27,8 @@ public class Shooter : AgentComponent
 
     public override void Tick()
     {
+        base.Tick();
+
         if (!target)
             return;
 
@@ -64,7 +66,7 @@ public class Shooter : AgentComponent
     private void Shoot()
     {
         Projectile projectile = Instantiate(projectilePrefab);
-        projectile.Init(owner.transform, muzzle);
+        projectile.Init(Owner.transform, muzzle);
     }
 
     private void Rotate(float input)

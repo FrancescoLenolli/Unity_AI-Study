@@ -537,7 +537,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d531523a5447a254597da76a5b2bb408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   pathParent: {fileID: 755766917}
   path: []
 --- !u!114 &738146340
@@ -552,8 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28cdc57e384b7f488e5752ea8b089d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
   canMove: 1
+  canRotate: 1
   movementSpeed: 10
   rotationSpeed: 200
   threshold: 0.04
@@ -665,7 +664,7 @@ MonoBehaviour:
   - node1: {fileID: 351146131}
     node2: {fileID: 831089720}
     direction: 1
-  pathFollower: {fileID: 852071595}
+  pathFollower: {fileID: 852071603}
   targetPosition: {fileID: 224893730}
 --- !u!1 &821561061
 GameObject:
@@ -981,7 +980,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7857970831227301331, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
   m_PrefabInstance: {fileID: 7857970830434907667}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &852071595
+--- !u!114 &852071603
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -993,9 +992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3ffce69deac214f8aeecb5ed62c375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
-  pathHandler: {fileID: 755766918}
-  startingNode: {fileID: 1900295110}
+  startingNode: {fileID: 1621621732}
   path: []
 --- !u!1 &1000250551
 GameObject:
@@ -1556,13 +1553,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2068201658, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
+      propertyPath: canMove
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068201658, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
       propertyPath: rotationSpeed
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1318746050714963674, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 738146342}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430257680874140728, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
+      propertyPath: canShoot
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430257680874140728, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
+      propertyPath: autopilot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1430257680874140728, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
+      propertyPath: anglePrecision
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7857970831227301330, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1611,5 +1624,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIAgent
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1430257680874140728, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9e27e0f52aa4a7d4bb2b621ada4e7b9c, type: 3}

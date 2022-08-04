@@ -30,12 +30,12 @@ public class PathFollower : AgentComponent
     {
         index = 0;
         this.path = path;
-        owner.Target = GetWaypoint();
+        Owner.Target = GetWaypoint();
     }
 
     private void SetNewWaypoint()
     {
-        owner.Target = GetNextWaypoint();
+        Owner.Target = GetNextWaypoint();
     }
 
     private Transform GetNextWaypoint()

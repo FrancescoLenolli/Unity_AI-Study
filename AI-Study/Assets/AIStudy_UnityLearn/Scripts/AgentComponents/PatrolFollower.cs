@@ -27,7 +27,7 @@ public class PatrolFollower : AgentComponent
 
     private void SetWaypoint()
     {
-        owner.Target = GetNextWaypoint();
+        Owner.Target = GetNextWaypoint();
     }
 
     private Transform GetNextWaypoint()
