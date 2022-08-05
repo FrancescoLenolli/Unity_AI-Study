@@ -537,6 +537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d531523a5447a254597da76a5b2bb408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabled: 1
   pathParent: {fileID: 755766917}
   path: []
 --- !u!114 &738146340
@@ -551,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d28cdc57e384b7f488e5752ea8b089d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabled: 1
   canMove: 1
   canRotate: 1
   movementSpeed: 10
@@ -992,6 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c3ffce69deac214f8aeecb5ed62c375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enabled: 1
   startingNode: {fileID: 1621621732}
   path: []
 --- !u!1 &1000250551

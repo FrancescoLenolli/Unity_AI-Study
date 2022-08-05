@@ -34,7 +34,7 @@ public class Driver : AgentComponent
 
     protected virtual bool CanMove()
     {
-        return canMove;
+        return canMove && enabled;
     }
 
     protected virtual bool CanRotate()
@@ -42,13 +42,13 @@ public class Driver : AgentComponent
         return canRotate;
     }
 
-    private void Move(Vector3 direction)
+    protected virtual void Move(Vector3 direction)
     {
         transform.Translate(movementSpeed * Time.deltaTime * direction, Space.World);
     }
 
-    private void Face(Vector3 target)
+    protected virtual void Face(Vector3 target)
     {
-        transform.Rotate(target);
+        transform.Rotate(rotationSpeed * Time.deltaTime * target, Space.World);
     }
 }

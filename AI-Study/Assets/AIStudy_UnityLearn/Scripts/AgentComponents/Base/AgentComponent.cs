@@ -11,5 +11,5 @@ public class AgentComponent : MonoBehaviour
 
     public virtual void Init(Agent owner) { Owner = owner; }
     public virtual void Tick() { if (!Enabled) return; }
-    public bool IsEnabled() { return Enabled; }
+    public void Enable(bool enable) { enabled = enable; }
 }
