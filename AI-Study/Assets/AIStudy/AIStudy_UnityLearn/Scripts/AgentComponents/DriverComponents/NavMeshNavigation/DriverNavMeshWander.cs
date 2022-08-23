@@ -8,7 +8,7 @@ public class DriverNavMeshWander : DriverNavMesh
     [SerializeField] float wanderDistance = 10f;
     [SerializeField] float wanderJitter = 10f;
     [SerializeField] float newPositionTimer = 2f;
-    private Vector3 targetPosition;
+    private new Vector3 targetPosition;
 
     public override void Init(Agent owner)
     {
