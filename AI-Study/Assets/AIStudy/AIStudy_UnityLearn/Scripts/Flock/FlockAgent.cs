@@ -15,17 +15,27 @@ public class FlockAgent : MonoBehaviour
 
     private void Update()
     {
-        if(handler.OutOfBounds(transform.position))
+        RaycastHit hit = new RaycastHit();
+        Vector3 direction = Vector3.zero;
+
+        if (handler.OutOfBounds(transform.position))
         {
-            RotateTowards(handler.Bounds.center);
+            direction = handler.Bounds.center;
+        }
+        else if (Physics.Raycast(transform.position, transform.forward * 10, out hit))
+        {
+            direction = Vector3.Reflect(transform.forward, hit.normal);
         }
 
-        if(Random.Range(0, 100) < 40)
+        if (direction != Vector3.zero)
+            RotateTowards(handler.Bounds.center);
+
+        if (Random.Range(0, 100) < 40)
         {
             speed = Random.Range(handler.MinSpeed, handler.MaxSpeed);
             rotationSpeed = Random.Range(handler.MinRotationSpeed, handler.MaxRotationSpeed);
             ApplyRules();
-        }    
+        }
 
         transform.Translate(0, 0, Time.deltaTime * speed);
     }
