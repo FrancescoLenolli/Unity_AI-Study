@@ -7,17 +7,24 @@ namespace GOAP
 {
     public abstract class Action : MonoBehaviour
     {
-        [SerializeField] protected string actionName = "Action";
-        [SerializeField] protected float cost = 1f;
-        [SerializeField] protected GameObject target = null;
-        [SerializeField] protected GameObject targetTag = null;
-        [SerializeField] protected float duration = 1f;
+        [SerializeField] private float cost = 1f;
+        [SerializeField] private GameObject target = null;
+        [SerializeField] private string targetName = null;
+        [SerializeField] private float duration = 1f;
         [SerializeField] protected WorldState[] preConditions;
         [SerializeField] protected WorldState[] afterEffects;
-        [SerializeField] protected bool isRunning = false;
-        protected NavMeshAgent agent;
+        [SerializeField] private bool isRunning = false;
+        private NavMeshAgent agent;
         protected Dictionary<string, int> preconditions;
-        protected Dictionary<string, int> effects;
+        private Dictionary<string, int> effects;
+
+        public Dictionary<string, int> Effects { get => effects; }
+        public float Cost { get => cost; }
+        public bool IsRunning { get => isRunning; }
+        public NavMeshAgent Agent { get => agent; }
+        public float Duration { get => duration; }
+        public string TargetName { get => targetName; }
+        public GameObject Target { get => target; }
 
         public Action()
         {
@@ -46,9 +53,14 @@ namespace GOAP
             }
         }
 
-        public bool IsAchievable()
+        public void Run(bool run)
         {
-            return true;
+            isRunning = run;
+        }
+
+        public void SetTarget(string targetName)
+        {
+            target = GameObject.Find(targetName);
         }
 
         public bool IsAchievableGiven(Dictionary<string, int> conditions)
@@ -62,7 +74,8 @@ namespace GOAP
             return true;
         }
 
-        public abstract void PrePerform();
-        public abstract void PostPerform();
+        public abstract bool PrePerform();
+        public abstract bool PostPerform();
+        public virtual bool IsAchievable() { return true; }
     }
 }
