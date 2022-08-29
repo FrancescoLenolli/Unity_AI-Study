@@ -13,9 +13,10 @@ namespace GOAP
         [SerializeField] protected WorldState[] preConditions;
         [SerializeField] protected WorldState[] afterEffects;
         [SerializeField] private bool isRunning = false;
+        private Dictionary<string, int> preconditions;
         private NavMeshAgent agent;
-        protected Dictionary<string, int> preconditions;
         private Dictionary<string, int> effects;
+        private WorldStates agentBeliefs;
 
         public Dictionary<string, int> Effects { get => effects; }
         public float Cost { get => cost; }
@@ -23,7 +24,10 @@ namespace GOAP
         public NavMeshAgent Agent { get => agent; }
         public float Duration { get => duration; }
         public string TargetName { get => targetName; }
+        public string Name { get => GetType().Name; }
         public GameObject Target { get => target; }
+        public Dictionary<string, int> Preconditions { get => preconditions; }
+        public Dictionary<string, int> Effects1 { get => effects; }
 
         public Action()
         {
@@ -34,6 +38,7 @@ namespace GOAP
         private void Awake()
         {
             agent = GetComponent<NavMeshAgent>();
+            agentBeliefs = GetComponent<Agent>().Beliefs;
 
             if (preConditions != null)
             {

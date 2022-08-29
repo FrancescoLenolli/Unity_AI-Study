@@ -24,27 +24,32 @@ namespace GOAP
         public Action currentAction;
         public List<Action> actions = new List<Action>();
 
+        protected WorldStates beliefs;
+
         private Planner planner;
         private Queue<Action> actionQueue;
         private SubGoal currentGoal;
         private Animator animator;
         private bool invoked;
 
+        public WorldStates Beliefs { get => beliefs; }
 
         public void Awake()
         {
             invoked = false;
             animator = GetComponent<Animator>();
             actions = GetComponents<Action>().ToList();
+            beliefs = new WorldStates();
         }
 
-        private void LateUpdate()
+        public void Update()
         {
             if(currentAction != null && currentAction.IsRunning)
             {
-                if(currentAction.Agent.hasPath && currentAction.Agent.remainingDistance < .8f)
+                float distance = Vector3.Distance(currentAction.Target.transform.position, transform.position);
+                if (currentAction.Agent.hasPath && distance /*currentAction.Agent.remainingDistance*/ < .6f)
                 {
-                    if(!invoked)
+                    if (!invoked)
                     {
                         Invoke("CompleteAction", currentAction.Duration);
                         animator.SetTrigger("idle");
@@ -62,7 +67,7 @@ namespace GOAP
                 var sortedGoals = goals.OrderByDescending(goal => goal.Value);
                 foreach(KeyValuePair<SubGoal, int> goal in sortedGoals)
                 {
-                    actionQueue = planner.Plan(actions, goal.Key.goals, null);
+                    actionQueue = planner.Plan(actions, goal.Key.goals, beliefs);
                     {
                         if(actionQueue != null)
                         {

@@ -18,6 +18,21 @@ namespace GOAP
             state = new Dictionary<string, int>(allStates);
             this.action = action;
         }
+
+        public Node(Node parent, float cost, Dictionary<string, int> allStates, Dictionary<string, int> beliefStates, Action action)
+        {
+            this.parent = parent;
+            this.cost = cost;
+            this.action = action;
+            state = new Dictionary<string, int>(allStates);
+            foreach(KeyValuePair<string, int> belief in beliefStates)
+            {
+                if(!state.ContainsKey(belief.Key))
+                {
+                    state.Add(belief.Key, belief.Value);
+                }
+            }
+        }
     }
 
     public class Planner
@@ -29,12 +44,12 @@ namespace GOAP
             this.agentName = agentName;
         }
 
-        public Queue<Action> Plan(List<Action> actions, Dictionary<string, int> goal, WorldStates states)
+        public Queue<Action> Plan(List<Action> actions, Dictionary<string, int> goal, WorldStates beliefStates)
         {
             List<Action> availableActions = actions.TakeWhile(action => action.IsAchievable()).ToList();
 
             List<Node> leaves = new List<Node>();
-            Node startingNode = new Node(null, 0, World.GetWorld().GetStates(), null);
+            Node startingNode = new Node(null, 0, World.GetWorld().GetStates(), beliefStates.states, null);
 
             bool planFound = BuildGraph(startingNode, leaves, availableActions, goal);
             if (!planFound)
@@ -75,7 +90,7 @@ namespace GOAP
             int index = 1;
             foreach(Action action in queue)
             {
-                planLog += $"{index}. {action.GetType().Name}\n";
+                planLog += $"{index}. {action.Name}\n";
                 ++index;
             }
             Debug.Log(planLog);

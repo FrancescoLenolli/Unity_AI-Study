@@ -650,6 +650,69 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 315312150}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &353102155 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5200943680524373108, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
+  m_PrefabInstance: {fileID: 1903986375884112808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &353102161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353102155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 781af4a4c670b634d86bff22e74a9811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
+  target: {fileID: 0}
+  targetName: Chest
+  duration: 1
+  preConditions:
+  - key: foodCollected
+    value: 1
+  afterEffects:
+  - key: foodDeposited
+    value: 1
+  isRunning: 0
+--- !u!114 &353102162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353102155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1803b65fca6b9a846bc4e2e617bc055a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
+  target: {fileID: 0}
+  targetName: FoodPoint
+  duration: 1
+  preConditions: []
+  afterEffects:
+  - key: foodCollected
+    value: 1
+  isRunning: 0
+--- !u!114 &353102163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353102155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e354f95ebd90a46b2908bf6ac511ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentAction: {fileID: 0}
+  actions: []
 --- !u!1 &384338775
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,6 +945,10 @@ PrefabInstance:
     - target: {fileID: 5200943680524373108, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
       propertyPath: m_Name
       value: ToolMaker
+      objectReference: {fileID: 0}
+    - target: {fileID: 5200943680524373108, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5200943680524373109, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
       propertyPath: m_RootOrder
@@ -1695,7 +1762,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7669826616572214556, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
 --- !u!1 &1911135901 stripped
 GameObject:
@@ -1716,6 +1784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentAction: {fileID: 0}
   actions: []
+  hunger: 0
+  hungerBuildup: 20
 --- !u!114 &1911135903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,9 +1848,49 @@ MonoBehaviour:
   target: {fileID: 0}
   targetName: Tree
   duration: 2
-  preConditions: []
+  preConditions:
+  - key: fed
+    value: 1
   afterEffects:
   - key: woodGathered
+    value: 1
+  isRunning: 0
+--- !u!114 &1911135912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911135901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f114280caab6ea1479f59e9bded8ec5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisAgent: {fileID: 1911135902}
+--- !u!114 &1911135913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911135901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3402d04ec8f6048b611d42cb8c8f57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 1
+  target: {fileID: 0}
+  targetName: Chest
+  duration: 1
+  preConditions:
+  - key: hungry
+    value: 1
+  - key: Food
+    value: 1
+  afterEffects:
+  - key: fed
     value: 1
   isRunning: 0
 --- !u!1001 &1955761016
@@ -2139,6 +2249,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FoodSupplier
       objectReference: {fileID: 0}
+    - target: {fileID: 5200943680524373108, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5200943680524373109, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2183,5 +2297,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7669826616572214556, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ea567b141f472344f9740765e97c1c9b, type: 3}
