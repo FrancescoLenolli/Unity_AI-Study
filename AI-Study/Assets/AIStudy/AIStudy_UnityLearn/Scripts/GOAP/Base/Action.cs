@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -36,9 +35,9 @@ namespace GOAP
         {
             agent = GetComponent<NavMeshAgent>();
 
-            if(preConditions != null)
+            if (preConditions != null)
             {
-                foreach(WorldState w in preConditions)
+                foreach (WorldState w in preConditions)
                 {
                     preconditions.Add(w.key, w.value);
                 }
@@ -65,7 +64,7 @@ namespace GOAP
 
         public bool IsAchievableGiven(Dictionary<string, int> conditions)
         {
-            foreach(KeyValuePair<string, int> condition in preconditions)
+            foreach (KeyValuePair<string, int> condition in preconditions)
             {
                 if (!conditions.ContainsKey(condition.Key))
                     return false;

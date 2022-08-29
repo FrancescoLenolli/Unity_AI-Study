@@ -27,12 +27,14 @@ namespace GOAP
         private Planner planner;
         private Queue<Action> actionQueue;
         private SubGoal currentGoal;
+        private Animator animator;
         private bool invoked;
 
 
         public void Awake()
         {
             invoked = false;
+            animator = GetComponent<Animator>();
             actions = GetComponents<Action>().ToList();
         }
 
@@ -40,11 +42,12 @@ namespace GOAP
         {
             if(currentAction != null && currentAction.IsRunning)
             {
-                if(currentAction.Agent.hasPath && currentAction.Agent.remainingDistance < 1f)
+                if(currentAction.Agent.hasPath && currentAction.Agent.remainingDistance < .8f)
                 {
                     if(!invoked)
                     {
                         Invoke("CompleteAction", currentAction.Duration);
+                        animator.SetTrigger("idle");
                         invoked = true;
                     }
                 }
@@ -54,7 +57,7 @@ namespace GOAP
 
             if (planner == null || actionQueue == null)
             {
-                planner = new Planner();
+                planner = new Planner(name);
 
                 var sortedGoals = goals.OrderByDescending(goal => goal.Value);
                 foreach(KeyValuePair<SubGoal, int> goal in sortedGoals)
@@ -86,13 +89,17 @@ namespace GOAP
                 if(currentAction.PrePerform())
                 {
                     if (currentAction.Target == null && currentAction.TargetName != "")
+                    {
                         currentAction.SetTarget(currentAction.TargetName);
+                    }
 
                     if(currentAction.Target != null)
                     {
                         currentAction.Run(true);
                         currentAction.Agent.SetDestination(currentAction.Target.transform.position);
                     }
+
+                    animator.SetTrigger("walk");
                 }
                 else
                 {

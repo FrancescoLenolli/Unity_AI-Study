@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Inspector
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 175
+  controlID: 55
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 176
+  controlID: 56
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 177
+  controlID: 57
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -190,8 +190,8 @@ MonoBehaviour:
     y: 0
     width: 282
     height: 538
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneView
+  m_Name: AnimatorControllerTool
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -216,14 +216,14 @@ MonoBehaviour:
     y: 0
     width: 719
     height: 538
-  m_MinSize: {x: 202, y: 221}
+  m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -243,8 +243,8 @@ MonoBehaviour:
     y: 0
     width: 493
     height: 538
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 118
+  controlID: 90
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -320,8 +320,8 @@ MonoBehaviour:
     y: 0
     width: 493
     height: 401
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -374,8 +374,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -30999
-    y: -31970
+    x: 1001
+    y: 73
     width: 491
     height: 517
   m_ViewDataDictionary: {fileID: 0}
@@ -466,8 +466,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -32000
-    y: -31970
+    x: 0
+    y: 73
     width: 281
     height: 517
   m_ViewDataDictionary: {fileID: 0}
@@ -477,9 +477,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9e500000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2efbffff
+      m_ExpandedIDs: 34fbffff444d0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -523,8 +523,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -31718
-    y: -31970
+    x: 282
+    y: 73
     width: 717
     height: 517
   m_ViewDataDictionary: {fileID: 0}
@@ -728,9 +728,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 5.8051825, y: 8.4911995, z: 10.872844}
+    m_Target: {x: 3.403596, y: 6.5805707, z: 8.500946}
     speed: 2
-    m_Value: {x: 5.8051825, y: 8.4911995, z: 10.872844}
+    m_Value: {x: 3.403596, y: 6.5805707, z: 8.500946}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -777,9 +777,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.07478579, y: 0.91717833, z: -0.3327195, w: -0.20616187}
+    m_Target: {x: -0.07590706, y: 0.91586626, z: -0.33535615, w: -0.20731065}
     speed: 2
-    m_Value: {x: -0.07478526, y: 0.9171719, z: -0.33271715, w: -0.20616043}
+    m_Value: {x: -0.075906515, y: 0.9158597, z: -0.33535376, w: -0.20730916}
   m_Size:
     m_Target: 1.8603119
     speed: 2
@@ -839,15 +839,32 @@ MonoBehaviour:
   m_ViewTransforms:
     m_KeySerializationHelper:
     - {fileID: -8544601020513227148, guid: 833316fe02282744ea9b1a19a2bc9f92, type: 2}
+    - {fileID: 1836149862065102867, guid: 715bc75d07931a74e98801ba2fa30797, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.6161057
+    - e00: 0.7085215
       e01: 0
       e02: 0
-      e03: -97.88016
+      e03: 37.58786
       e10: 0
-      e11: 0.6161057
+      e11: 0.7085215
       e12: 0
-      e13: 195.15611
+      e13: 297.37958
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.7463569
+      e01: 0
+      e02: 0
+      e03: 47.931675
+      e10: 0
+      e11: 0.7463569
+      e12: 0
+      e13: 250.65727
       e20: 0
       e21: 0
       e22: 1
@@ -857,9 +874,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 833316fe02282744ea9b1a19a2bc9f92, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: 715bc75d07931a74e98801ba2fa30797, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: -8544601020513227148, guid: 833316fe02282744ea9b1a19a2bc9f92, type: 2}
+  - m_Target: {fileID: 1836149862065102867, guid: 715bc75d07931a74e98801ba2fa30797, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -892,8 +909,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -32000
-    y: -31432
+    x: 0
+    y: 611
     width: 1000
     height: 380
   m_ViewDataDictionary: {fileID: 0}
@@ -913,22 +930,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/AIStudy/AIStudy_UnityLearn/Scripts/GOAP
+    - Assets/AIStudy/Animations/Controllers
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/AIStudy/AIStudy_UnityLearn/Scripts/GOAP
+  - Assets/AIStudy/Animations/Controllers
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Unity Projects\Unity_AI-Study\AI-Study
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 31}
-    m_SelectedIDs: e44f0000
-    m_LastClickedID: 20452
-    m_ExpandedIDs: 000000009c4f00009e4f0000a04f0000a24f0000a44f0000a64f0000a84f0000
+    m_SelectedIDs: 92830000
+    m_LastClickedID: 33682
+    m_ExpandedIDs: 00000000c04f0000c24f0000c44f0000c64f0000c84f0000ca4f0000cc4f0000085000000c500000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -956,7 +973,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009c4f00009e4f0000a04f0000a24f0000a44f0000a64f0000a84f0000
+    m_ExpandedIDs: 00000000c04f0000c24f0000c44f0000c64f0000c84f0000ca4f0000cc4f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -987,15 +1004,15 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c623000018530000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Planner
-      m_OriginalName: Planner
+      m_Name: GOAPController
+      m_OriginalName: GOAPController
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 20638
+      m_UserData: -32026
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -1032,8 +1049,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -30999
-    y: -31432
+    x: 1001
+    y: 611
     width: 491
     height: 380
   m_ViewDataDictionary: {fileID: 0}
@@ -1060,8 +1077,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -30506
-    y: -31970
+    x: 1494
+    y: 73
     width: 425
     height: 918
   m_ViewDataDictionary: {fileID: 0}

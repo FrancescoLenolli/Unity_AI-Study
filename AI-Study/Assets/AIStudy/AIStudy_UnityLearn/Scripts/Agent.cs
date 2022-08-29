@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    [SerializeField] private bool isIndependent = true;
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 targetPosition;
     private List<AgentComponent> components = new List<AgentComponent>();
@@ -13,6 +14,16 @@ public class Agent : MonoBehaviour
     public Vector3 TargetPosition { get => targetPosition; set => SetTargetPosition(value); }
     public Action<Transform> OnTargetChanged { get; set; }
     public Action<Vector3> OnTargetPositionChanged { get; set; }
+
+    private void Awake()
+    {
+        if (isIndependent) Init();
+    }
+
+    private void Update()
+    {
+        if (isIndependent) Tick();
+    }
 
     public void Init()
     {

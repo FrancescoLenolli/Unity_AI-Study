@@ -22,6 +22,13 @@ namespace GOAP
 
     public class Planner
     {
+        private string agentName;
+
+        public Planner(string agentName)
+        {
+            this.agentName = agentName;
+        }
+
         public Queue<Action> Plan(List<Action> actions, Dictionary<string, int> goal, WorldStates states)
         {
             List<Action> availableActions = actions.TakeWhile(action => action.IsAchievable()).ToList();
@@ -32,7 +39,7 @@ namespace GOAP
             bool planFound = BuildGraph(startingNode, leaves, availableActions, goal);
             if (!planFound)
             {
-                Debug.LogWarning("No Plan Found!");
+                Debug.LogWarning($"{agentName} has no Plan!");
                 return null;
             }
 
@@ -63,14 +70,15 @@ namespace GOAP
             }
 
             Queue<Action> queue = new Queue<Action>(result);
+            string planLog = $"{agentName} Plan is:\n";
 
-            Debug.Log($"The Plan is:\n");
             int index = 1;
             foreach(Action action in queue)
             {
-                Debug.Log($"{index}. {action.GetType().Name}\n");
+                planLog += $"{index}. {action.GetType().Name}\n";
                 ++index;
             }
+            Debug.Log(planLog);
 
             return queue;
          }

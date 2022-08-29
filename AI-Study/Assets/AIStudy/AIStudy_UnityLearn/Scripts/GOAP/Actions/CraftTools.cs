@@ -1,8 +1,7 @@
 namespace GOAP.Actions
 {
-    public class DepositWood : Action
+    public class CraftTools : Action
     {
-
         public override bool PrePerform()
         {
             return true;
@@ -10,7 +9,6 @@ namespace GOAP.Actions
 
         public override bool PostPerform()
         {
-            World.GetWorld().ModifyState("Wood", 1);
             return true;
         }
     }

@@ -12,6 +12,10 @@ public class Shooter : AgentComponent
     [SerializeField] private float anglePrecision = 10f;
     [SerializeField] private bool canShoot = true;
     [SerializeField] private bool autopilot = false;
+    public float angleToTarget;
+    public float angle;
+    public float underSquareRoot;
+    public bool hit;
 
     private Transform target;
     private Driver driver;
@@ -43,16 +47,17 @@ public class Shooter : AgentComponent
         {
             float? angle = AutoRotate();
 
-            if(canShoot)
+            if (canShoot)
             {
                 float angleToTarget = Vector3.Angle(target.position - weapon.position, transform.forward);
-                if (angle != null && isWeaponReady &&  angleToTarget < anglePrecision)
+                this.angleToTarget = angleToTarget;
+                if (angle != null && isWeaponReady && angleToTarget < anglePrecision)
                 {
                     isWeaponReady = false;
                     Shoot();
                     Invoke("WeaponReady", fireRate);
                 }
-            }    
+            }
         }
     }
 
@@ -76,7 +81,7 @@ public class Shooter : AgentComponent
     {
         float? angle = CalculateAngle(false);
 
-        if(angle != null)
+        if (angle != null)
         {
             weapon.localEulerAngles = new Vector3(360 - (float)angle, 0f, 0f);
         }
@@ -94,13 +99,21 @@ public class Shooter : AgentComponent
         float squareSpeed = projectilePrefab.Speed * projectilePrefab.Speed;
         float underSquareRoot = (squareSpeed * squareSpeed) - gravity * (gravity * x * x + 2 * y * squareSpeed);
 
-        if(underSquareRoot >= 0f)
+        float angle = Mathf.Atan2(squareSpeed + Mathf.Sqrt(underSquareRoot), gravity * x) * Mathf.Rad2Deg;
+        this.angle = angle;
+        this.underSquareRoot = underSquareRoot;
+        hit = underSquareRoot >= 0f;
+
+        Color color = hit ? Color.green : Color.red;
+        weapon.GetComponent<MeshRenderer>().material.color = color;
+
+        if (underSquareRoot >= 0f)
         {
             float root = Mathf.Sqrt(underSquareRoot);
             float highAngle = squareSpeed + root;
             float lowAngle = squareSpeed - root;
 
-            if(low)
+            if (low)
             {
                 return Mathf.Atan2(lowAngle, gravity * x) * Mathf.Rad2Deg;
             }
